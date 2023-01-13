@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import './pages/auth_check.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -8,7 +9,25 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const TinderForDogs());
+}
+
+class TinderForDogs extends StatefulWidget {
+  const TinderForDogs({super.key});
+
+  @override
+  State<TinderForDogs> createState() => _TinderForDogstate();
+}
+
+class _TinderForDogstate extends State<TinderForDogs> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.blueGrey),
+      debugShowCheckedModeBanner: false,
+      home: const Auth(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

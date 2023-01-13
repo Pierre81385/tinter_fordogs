@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'auth_check.dart';
 import 'login.dart';
@@ -15,6 +16,8 @@ class _RegisterState extends State<Register> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+
+  final firestoreInstance = FirebaseFirestore.instance;
 
   // sign user up method
   void signUserUp() async {
@@ -40,11 +43,17 @@ class _RegisterState extends State<Register> {
         // show error message, passwords don't match
         showErrorMessage("Passwords don't match!");
       }
+
+      firestoreInstance
+          .collection("users")
+          .add({"email": emailController.text}).then((value) {
+        print(value.id);
+      });
       // pop the loading circle
 
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => Auth(),
+          builder: (context) => const Auth(),
         ),
       );
     } on FirebaseAuthException catch (e) {
