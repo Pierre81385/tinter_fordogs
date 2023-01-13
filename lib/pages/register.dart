@@ -182,7 +182,7 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     onPressed: signUserUp,
-                    child: const Text('SIGN UP & LOGIN')),
+                    child: const Text('REGISTER & LOGIN')),
 
                 const SizedBox(height: 50),
 

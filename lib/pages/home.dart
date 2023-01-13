@@ -12,16 +12,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late User _currentUser;
+  bool _isSigningOut = false;
 
   @override
   void initState() {
     _currentUser = widget.user;
     super.initState();
-  }
-
-  // sign user out method
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
   }
 
   @override
@@ -32,8 +28,14 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.grey[900],
         actions: [
           IconButton(
-            onPressed: () {
-              signUserOut;
+            onPressed: () async {
+              setState(() {
+                _isSigningOut = true;
+              });
+              await FirebaseAuth.instance.signOut();
+              setState(() {
+                _isSigningOut = false;
+              });
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) => Login(),
