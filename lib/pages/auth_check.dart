@@ -1,28 +1,30 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'home.dart';
-import 'login.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter/material.dart';
+// import 'home.dart';
+// import 'login.dart';
 
-class Auth extends StatelessWidget {
-  const Auth({super.key});
+// class Auth extends StatelessWidget {
+//   const Auth({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          // user is logged in
-          if (snapshot.hasData) {
-            return Home();
-          }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: StreamBuilder<User?>(
+//         stream: FirebaseAuth.instance.authStateChanges(),
+//         builder: (context, snapshot) {
+//           // user is logged in
+//           if (snapshot.hasData) {
+//             return Home(user: snapshot);
+//           }
 
-          // user is NOT logged in
-          else {
-            return Login();
-          }
-        },
-      ),
-    );
-  }
-}
+//           // user is NOT logged in
+//           else {
+//             return Login();
+//           }
+//         },
+//       ),
+//     );
+//   }
+// }
+
+

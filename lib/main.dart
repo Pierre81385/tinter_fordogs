@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import './pages/auth_check.dart';
+import './pages/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class _TinderForDogstate extends State<TinderForDogs> {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blueGrey),
       debugShowCheckedModeBanner: false,
-      home: const Auth(),
+      home: Login(),
     );
   }
 }

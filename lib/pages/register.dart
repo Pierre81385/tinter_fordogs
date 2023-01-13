@@ -44,16 +44,17 @@ class _RegisterState extends State<Register> {
         showErrorMessage("Passwords don't match!");
       }
 
-      firestoreInstance
-          .collection("users")
-          .add({"email": emailController.text}).then((value) {
+      firestoreInstance.collection("users").add({
+        "email": emailController.text,
+        "uid": FirebaseAuth.instance.currentUser?.uid
+      }).then((value) {
         print(value.id);
       });
       // pop the loading circle
 
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const Auth(),
+          builder: (context) => Login(),
         ),
       );
     } on FirebaseAuthException catch (e) {

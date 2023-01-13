@@ -1,10 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tinder_fordogs/pages/login.dart';
 
-class Home extends StatelessWidget {
-  Home({super.key});
+class Home extends StatefulWidget {
+  final User user;
+  const Home({required this.user});
 
-  final user = FirebaseAuth.instance.currentUser!;
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  late User _currentUser;
+
+  @override
+  void initState() {
+    _currentUser = widget.user;
+    super.initState();
+  }
 
   // sign user out method
   void signUserOut() {
@@ -19,14 +32,21 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.grey[900],
         actions: [
           IconButton(
-            onPressed: signUserOut,
+            onPressed: () {
+              signUserOut;
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => Login(),
+                ),
+              );
+            },
             icon: Icon(Icons.logout),
           )
         ],
       ),
       body: Center(
           child: Text(
-        "LOGGED IN AS: " + user.email!,
+        "LOGGED IN AS: " + _currentUser.email!,
         style: TextStyle(fontSize: 20),
       )),
     );

@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import '../services/fire_auth.dart';
 import '../services/validators.dart';
 import './home.dart';
-import './register.dart';
 
-class Login extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   final _emailTextController = TextEditingController();
@@ -51,7 +50,7 @@ class _LoginState extends State<Login> {
         // appBar: AppBar(
         //   title: Text('Firebase Authentication'),
         // ),
-        backgroundColor: Colors.grey[300],
+              backgroundColor: Colors.grey[300],
 
         body: FutureBuilder(
           future: _initializeFirebase(),
@@ -142,7 +141,7 @@ class _LoginState extends State<Login> {
                                                   .pushReplacement(
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      Home(user: user),
+                                                      ProfilePage(user: user),
                                                 ),
                                               );
                                             }
@@ -160,7 +159,8 @@ class _LoginState extends State<Login> {
                                         onPressed: () {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
-                                              builder: (context) => Register(),
+                                              builder: (context) =>
+                                                  RegisterPage(),
                                             ),
                                           );
                                         },
@@ -189,3 +189,4 @@ class _LoginState extends State<Login> {
     );
   }
 }
+Footer
